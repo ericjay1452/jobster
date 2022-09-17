@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import people from '../assets/images/people.svg';
 import {Logo } from '../components';
 
@@ -24,7 +25,7 @@ const LandingPage = () => {
 						slow-carb 8-bit hell of master cleanse. Unicorn schlitz tumblr poutine, vinyl cloud bread
 						post-ironic normcore bicycle rights chicharrones echo park bruh kombucha literally.
 					</p>
-					<button className="btn btn-hero">Signin / Login </button>
+					<Link className="btn btn-hero" to={"/register"}>Signin / Login </Link>
 				</div>
 
 				<img src={people} alt="logo" className="img main-img" />
