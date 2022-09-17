@@ -25,7 +25,16 @@ const Register = () => {
 
    const onSubmit = (e) =>{
     e.preventDefault()
-    const {email, name, password } = user
+    const {email, name, password, isMember } = user;
+
+    if(!email || !password || (!isMember && !name)) {
+           console.log("Please provide values to your inputs")
+           return;
+    }
+    setUser({...user,
+    name: "",
+  email: "",
+password: ""})
 
    }
 
