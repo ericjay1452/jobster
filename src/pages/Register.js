@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Wrapper from '../assets/wrappers/RegisterPage'
-import {Button, Input, Logo} from "../components"
+import {Button, InputRow, Logo} from "../components"
 
 const Data = {
   name: '',
@@ -13,12 +13,13 @@ const Register = () => {
  
   const [user, setUser ] = useState(Data);
 
-  const onCahnge = (e) =>{
-    console.log(e)
+  const handleChange =(e) =>{
+    console.log(e.target)
   }
 
    const onSubmit = (e) =>{
     e.preventDefault()
+    console.log(e)
    }
 
   return (
@@ -28,20 +29,30 @@ const Register = () => {
         <h3>Login</h3>
 
         {/* name field */}
-        <div className='form-row'>
-          <label htmlFor='name' className='form-label'>
-            name
-          </label>
-          <Input 
-          name="name" 
-          value={user.name}
-          type={"text"}
-          onChange = {onCahnge}
-          className = {`form-input`}
-          placeholder = "Enter your name"/>
-        </div>
+        <InputRow type={"text"}
+        value={user.name}
+        handleChange= {handleChange}
+        name="name"
+        placeholder={"Enter your name"}
+        />
 
-        <Button>Submit</Button>
+        {/* email field */}
+        <InputRow type={"email"}
+        value={user.email}
+        handleChange= {handleChange}
+        name="email"
+        placeholder={"Enter your email"}
+        />
+
+        {/* password field */}
+        <InputRow type={"password"}
+        value={user.password}
+        handleChange= {handleChange}
+        name="password"
+        placeholder={"Enter your password"}
+        />
+
+        <Button type={"submit"} className= {"btn btn-block"}>Submit</Button>
       </form>
     </Wrapper>
   )

@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+input {
+  border: none;
+  outline: none
+}
 /* fonts */
 @import url('https://fonts.googleapis.com/css2?family=Cabin&family=Roboto+Condensed:wght@400;700&display=swap');
 
