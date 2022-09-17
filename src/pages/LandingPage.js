@@ -16,9 +16,8 @@ export const LandingPage = () => {
            <p>lorem go yo cd ngndfgg  sjjdj   nvxcvj jdjfn ujdfoho IDBLSDD fddnslaskfkfjjk jfdjjskkn</p>
            <button className='btn btn-hero'>Signin / Login </button>
           </div>
-{/* 
-          <img src={''} alt= "logo" className='img main-img'/> */}
-          <p>loeoff dfepfprmf weohoehho ereildn</p>
+
+          <img src={''} alt= "logo" className='img main-img'/>
          </div>  
     </Wrapper>
   )
@@ -46,6 +45,25 @@ h1 {
 
   span {
     color : var(--primary-500)
+  }
+}
+
+p {
+  color: var(--grey-600);
+}
+
+.main-img {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .page {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 3rem;
+  }
+
+  .main-img {
+    display: block;
   }
 }
 `
