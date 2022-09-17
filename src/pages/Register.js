@@ -35,12 +35,15 @@ const Register = () => {
         <h3>{user.isMember? "Login" : "Register"}</h3>
 
         {/* name field */}
+        {!user.isMember && (
         <InputRow type={"text"}
         value={user.name}
         handleChange= {handleChange}
         name="name"
         placeholder={"Enter your name"}
         />
+
+        )}
 
         {/* email field */}
         <InputRow type={"email"}
@@ -60,9 +63,10 @@ const Register = () => {
 
         <Button type={"submit"} className= {"btn btn-block"}>Submit</Button>
 
-        <p> Testing 
-          <Button type={"button"} onClick= {toggleMember}>{user.isMember ? "testing" : "text"} </Button>
-          </p>
+        <div style={{display: "flex", justifyContent:"space-between", alignContent:"center"}}>
+           <p>{user.isMember? "Already a member" : "Register and signup"}</p>
+          <Button type={"button"} onClick= {toggleMember} className= {`btn`}>{user.isMember ? "Login" : "SignUp"} </Button>
+          </div>
       </form>
     </Wrapper>
   )
