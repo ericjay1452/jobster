@@ -1,6 +1,6 @@
 const InputRow = ({type, value, name, handleChange, placeholder}) =>{
     return (
-        <div className='form-row'>
+        <div className='form-row' style={{position : "relative"}}>
           <label htmlFor={name} className='form-label'>
            {name}
           </label>
