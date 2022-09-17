@@ -11,10 +11,23 @@ const Data = {
 
 const Register = () => {
  
-  const [user, setUser ] = useState(Data)
+  const [user, setUser ] = useState(Data);
+
+  const onCahnge = (e) =>{
+    console.log(e)
+  }
+
+   const onSubmit = (e) =>{
+    e.preventDefault()
+   }
 
   return (
-    <div>Register</div>
+    <Wrapper className='full-page'>
+      <form className='form' onSubmit={onSubmit}>
+        <Logo />
+        <h3>Login</h3>
+      </form>
+    </Wrapper>
   )
 }
 

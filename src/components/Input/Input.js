@@ -1,4 +1,4 @@
-export default Input = ({type, value, name, onChange, placeholder, className}) =>{
+const Input = ({type, value, name, onChange, placeholder, className}) =>{
     return (
         <input type={type} value= {value} 
         name= {name} onChange = {onChange}
@@ -6,3 +6,5 @@ export default Input = ({type, value, name, onChange, placeholder, className}) =
          className = {className} />
     )
 }
+
+export default Input
