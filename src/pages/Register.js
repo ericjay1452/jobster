@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Wrapper from '../assets/wrappers/RegisterPage'
 import {Button, InputRow, Logo} from "../components"
 import {FaPoop} from "react-icons/fa"
+import {toast} from "react-toastify"
 
 const Data = {
   name: '',
@@ -29,6 +30,7 @@ const Register = () => {
 
     if(!email || !password || (!isMember && !name)) {
            console.log("Please provide values to your inputs")
+           toast.error("Please fill all values")
            return;
     }
     setUser({...user,
