@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import Wrapper from '../assets/wrappers/RegisterPage'
-import {Logo} from "../components"
+import {Button, Input, Logo} from "../components"
 
 const Data = {
   name: '',
@@ -26,6 +26,22 @@ const Register = () => {
       <form className='form' onSubmit={onSubmit}>
         <Logo />
         <h3>Login</h3>
+
+        {/* name field */}
+        <div className='form-row'>
+          <label htmlFor='name' className='form-label'>
+            name
+          </label>
+          <Input 
+          name="name" 
+          value={user.name}
+          type={"text"}
+          onChange = {onCahnge}
+          className = {`form-input`}
+          placeholder = "Enter your name"/>
+        </div>
+
+        <Button>Submit</Button>
       </form>
     </Wrapper>
   )
