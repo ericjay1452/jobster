@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import people from '../assets/images/people.svg';
+import {Logo } from '../components';
 
-export const LandingPage = () => {
+const LandingPage = () => {
 	return (
 		<Wrapper>
 			<nav>
-				<img src={''} alt="jobster logo" className="logo" />
+				<Logo />
 			</nav>
 
 			<div className="container page">
@@ -76,3 +77,5 @@ const Wrapper = styled.main`
 		}
 	}
 `;
+
+export default LandingPage
