@@ -22,11 +22,17 @@ const Register = () => {
     console.log(e)
    }
 
+  //  For toggling user membership status
+   const toggleMember = () =>{
+    setUser({...user, isMember: !user.isMember})
+   }
+
   return (
     <Wrapper className='full-page'>
       <form className='form' onSubmit={onSubmit}>
         <Logo />
-        <h3>Login</h3>
+
+        <h3>{user.isMember? "Login" : "Register"}</h3>
 
         {/* name field */}
         <InputRow type={"text"}
@@ -53,6 +59,10 @@ const Register = () => {
         />
 
         <Button type={"submit"} className= {"btn btn-block"}>Submit</Button>
+
+        <p> Testing 
+          <Button type={"button"} onClick= {toggleMember}>{user.isMember ? "testing" : "text"} </Button>
+          </p>
       </form>
     </Wrapper>
   )
