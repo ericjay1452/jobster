@@ -24,6 +24,8 @@ const Register = () => {
     console.log(`${name} : ${value}`)
     }
 
+    // When working on your submit function, always destucture your values
+    
    const onSubmit = (e) =>{
     e.preventDefault()
     const {email, name, password, isMember } = user;
