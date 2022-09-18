@@ -3,6 +3,8 @@ import Wrapper from '../assets/wrappers/RegisterPage'
 import {Button, InputRow, Logo} from "../components"
 import {FaPoop} from "react-icons/fa"
 import {toast} from "react-toastify"
+import { useSelector,useDispatch } from 'react-redux'
+import { LoginUser, RegisterUser} from '../features/User/UserSlice'
 
 const Data = {
   name: '',
@@ -13,7 +15,11 @@ const Data = {
 }
 
 const Register = () => {
- 
+  // Always useDispatch for dispatching your actions coming from UserSlice.actions in UserSlice.js
+    const dispatch = useDispatch();
+
+    // destructuring my object to have access to my initialState in UserSlic.js
+    const {User, isLoading } = useSelector((store) =>store.user)
   const [user, setUser ] = useState(Data);
 
   const handleChange =(e) =>{
@@ -25,7 +31,6 @@ const Register = () => {
     }
 
     // When working on your submit function, always destucture your values
-    
    const onSubmit = (e) =>{
     e.preventDefault()
     const {email, name, password, isMember } = user;
@@ -35,6 +40,14 @@ const Register = () => {
            toast.error("Please fill all values")
            return;
     }
+    
+    // Dispatching my LoginUser to retrieve my userdata 
+    if(isMember) {
+       dispatch(LoginUser({email: email, password: password}))
+       return;
+    }
+    // Dispatching my RegisterUser to allow registration of user
+    dispatch(RegisterUser({name, email, password}))
     setUser({...user,
     name: "",
   email: "",
@@ -92,7 +105,7 @@ password: ""})
         <Button type={"submit"} className= {"btn btn-block"}>Submit</Button>
 
         <div style={{display: "flex", justifyContent:"space-between", alignContent:"center"}}>
-           <p>{user.isMember? "Not a member" : "Already a member"}</p>
+           <p>{user.isMember? "Not a member ? " : "Already a member ? "}</p>
           <Button type={"button"} onClick= {toggleMember} className= {`btn`}>{user.isMember ? "Signup" : "Login"} </Button>
           </div>
       </form>
