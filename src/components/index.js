@@ -1,3 +1,6 @@
 export {default as Logo} from "../components/Logo/Logo"
 export {default as InputRow} from "./Input/InputRow"
 export {default as Button} from "../components/Button/Button"
+export {default as BigSideBar} from "../components/Bigsidebar/BigSideBar"
+export {default as SmallSideBar} from "../components/Smallsidebar/SmallSideBar"
+export {default as Navbar} from "../components/Navbar/Navbar"

@@ -9,6 +9,7 @@ import {AddJobs, AllJobs, Profile, Stats, SharedLayout } from "./pages/Dashoard"
   return (
     <>
     <Routes>
+      {/* Created a sharedlayout for displaying my nested routes without navigating away */}
       <Route path='/' exact element = {<SharedLayout />}>
         <Route index element = {<Profile/> }/>
        <Route element = {<Stats />} path="stats"/>
