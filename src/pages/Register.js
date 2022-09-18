@@ -1,9 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import Wrapper from '../assets/wrappers/RegisterPage'
 import {Button, InputRow, Logo} from "../components"
-import {FaPoop} from "react-icons/fa"
 import {toast} from "react-toastify"
+import { useNavigate } from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux'
+import { MdVisibility } from "react-icons/md"
+import { AiFillEyeInvisible} from "react-icons/ai"
 import { LoginUser, RegisterUser} from '../features/User/UserSlice'
 
 const Data = {
@@ -17,9 +19,10 @@ const Data = {
 const Register = () => {
   // Always useDispatch for dispatching your actions coming from UserSlice.actions in UserSlice.js
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     // destructuring my object to have access to my initialState in UserSlic.js
-    const {User, isLoading, isTrue} = useSelector((store) =>store.user)
+    const {User, isLoading} = useSelector((store) =>store.user)
   const [user, setUser ] = useState(Data);
 
   const handleChange =(e) =>{
@@ -65,6 +68,14 @@ password: ""})
     setUser({...user, isVisible:!user.isVisible})
    }
 
+   useEffect( () =>{
+   if(User) {
+    setTimeout( ()=>{
+      navigate("/")
+    }, 2000)
+   }
+   }, [User, navigate])
+
   return (
     <Wrapper className='full-page'>
       <form className='form' onSubmit={onSubmit}>
@@ -99,7 +110,7 @@ password: ""})
         name="password"
         placeholder={"Enter your password"}
         />
-        <FaPoop style={{position: "absolute", top: "3em", right: "0", cursor: "pointer"}} onClick = {passwordVisible}/>
+        {user.isVisible ? <MdVisibility style={{position: "absolute", top: "3em", right: "0", cursor: "pointer"}} onClick = {passwordVisible}/> : <AiFillEyeInvisible style={{position: "absolute", top: "3em", right: "0", cursor: "pointer"}} onClick = {passwordVisible}/>}
         </div>
 
         <Button type={"submit"} className= {"btn btn-block"} disable = {isLoading}>Submit</Button>
