@@ -19,7 +19,7 @@ const Register = () => {
     const dispatch = useDispatch();
 
     // destructuring my object to have access to my initialState in UserSlic.js
-    const {User, isLoading } = useSelector((store) =>store.user)
+    const {User, isLoading, isTrue} = useSelector((store) =>store.user)
   const [user, setUser ] = useState(Data);
 
   const handleChange =(e) =>{
@@ -102,7 +102,7 @@ password: ""})
         <FaPoop style={{position: "absolute", top: "3em", right: "0", cursor: "pointer"}} onClick = {passwordVisible}/>
         </div>
 
-        <Button type={"submit"} className= {"btn btn-block"}>Submit</Button>
+        <Button type={"submit"} className= {"btn btn-block"} disable = {isLoading}>Submit</Button>
 
         <div style={{display: "flex", justifyContent:"space-between", alignContent:"center"}}>
            <p>{user.isMember? "Not a member ? " : "Already a member ? "}</p>
