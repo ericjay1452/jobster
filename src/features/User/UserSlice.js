@@ -6,6 +6,7 @@ import { getUserFromLocalStorage, AdduserToLocalStorage, RemoveuserFromLocalStor
   const initialState = {
     User: getUserFromLocalStorage(),
     isLoading : false,
+    isSidebarOpen : false,
   }
   
 
@@ -34,6 +35,14 @@ export const LoginUser = createAsyncThunk("user/loginUser", async (user,thunkApi
 const UserSlice = createSlice({
   name: "user",
   initialState,
+   
+    reducers: {
+     toggleSideBar : (state) =>{
+      state.isSidebarOpen = !state.isSidebarOpen
+     }
+    },
+
+  // extraReducers is used for fetching of api
   extraReducers : {
 
     [RegisterUser.pending]: (state) => {
@@ -73,6 +82,8 @@ const UserSlice = createSlice({
     }
   }
 })
+
+export const  { toggleSideBar } = UserSlice.actions
 
 // always export your UserSlice.reducer to allow to have access in your store.js
 export default UserSlice.reducer
