@@ -32,6 +32,7 @@ export const LoginUser = createAsyncThunk("user/loginUser", async (user,thunkApi
   }
 })
 
+// my state handler
 const UserSlice = createSlice({
   name: "user",
   initialState,
@@ -45,9 +46,9 @@ const UserSlice = createSlice({
     //  Used in Navbar.js for once user click on this function
     // its automatically log them out  
      logOutUser : (state) =>{
-      state.User = null,
-      state.isSidebarOpen = false,
-      RemoveuserFromLocalStorage()
+      state.User = null;
+      state.isSidebarOpen = false;
+      RemoveuserFromLocalStorage();
      }
     },
 
