@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Wrapper from "../../assets/wrappers/DashboardFormPage"
 import { FiLoader } from "react-icons/fi"
-import { FaSave } from "react-icons/fa"
+import { updateUser } from '../../features/User/UserSlice'
 import {toast} from "react-toastify"
-import {Button, InputRow } from "../../components" 
+import {Button, InputRow } from "../../components"
+
 
 const Profile = () => {
   const {isLoading, User } = useSelector( (store) =>store.user)
@@ -21,21 +22,26 @@ const Profile = () => {
     e.preventDefault()
     const { name, email, lastName, location } = Data;
 
-    if( !name || email || !lastName || !location) {
+    if( !name || !email || !lastName || !location) {
       toast.error("please, provide all inputs fields")
       return;
     }
 
-    setData({
-      name : "",
-      lastName : "",
-      email : "",
-      location : ""
-    })
+    // You can neither pass it as a full data or pass them explicitly, eg, name, email, location, lastName
+    dispatch(updateUser(Data))
+    // setData({
+    //   name : "",
+    //   lastName : "",
+    //   email : "",
+    //   location : ""
+    // })
+    console.log("You clicked me!")
   }
 
   const handleChange = (e) => {
-    setData( {...Data, [e.target.name] : e.target.value})
+    const name = e.target.name;
+    const value = e.target.value;
+    setData( {...Data, [name] : value})
   }
   
   const  {name, lastName, email, location } = Data;
