@@ -1,13 +1,11 @@
 import React from 'react'
 import Wrapper from '../../assets/wrappers/SmallSidebar'
-import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from "react-redux"
 import Logo from '../Logo/Logo'
 import { GrFormClose } from "react-icons/gr"
 import Button from '../Button/Button'
 import { toggleSideBar } from '../../features/User/UserSlice'
-import { links } from '../../utils/links'
-import { SidebarLinks } from './SidebarLinks'
+import Navlink from '../Navlink/Navlink'
 const SmallSideBar = () => {
 
   const { isSidebarOpen } = useSelector( (store) =>store.user)
@@ -28,12 +26,7 @@ const SmallSideBar = () => {
          <header>
           <Logo />
          </header>
-
-         <ul className='nav-links'>
-           {links.map( (link) =>{
-            return <SidebarLinks key={link.id} {...link} toggle={toggle}/>
-           })}
-         </ul>
+           <Navlink toggleSideBar={toggle}/>
         </div>
 
       </section>
