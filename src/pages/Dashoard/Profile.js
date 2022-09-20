@@ -35,10 +35,49 @@ const Profile = () => {
   const handleChange = (e) => {
     setData( {...Data, [e.target.name] : e.target.value})
   }
-
+  
+  const  {name, lastName, email, location } = Data;
 
   return (
-    <div>Profile</div>
+    <Wrapper>
+      <form className='form' onSubmit={handleSubmit}>
+        <h3>Profile</h3>
+
+        <div className='form-center'>
+          <InputRow 
+          type={"text"}
+          name = {"name"}
+          value = {name}
+          placeholder = {'Enter name'}
+          handleChange={handleChange}
+          />
+
+<InputRow 
+          type={"text"}
+          name = {"lastName"}
+          value = {lastName}
+          placeholder = {'Enter lastName'}
+          handleChange={handleChange}
+          />
+
+<InputRow 
+          type={"email"}
+          name = {"email"}
+          value = {email}
+          placeholder = {'Enter email'}
+          handleChange={handleChange}
+          />
+
+<InputRow 
+          type={"text"}
+          name = {"location"}
+          value = {location}
+          placeholder = {'Enter location'}
+          handleChange={handleChange}
+          />
+        </div>
+      </form>
+    </Wrapper>
   )
 }
 
