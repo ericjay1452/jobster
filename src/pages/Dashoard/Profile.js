@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Wrapper from "../../assets/wrappers/DashboardFormPage"
+import { FiLoader } from "react-icons/fi"
+import { FaSave } from "react-icons/fa"
 import {toast} from "react-toastify"
-import {InputRow } from "../../components" 
+import {Button, InputRow } from "../../components" 
 
 const Profile = () => {
   const {isLoading, User } = useSelector( (store) =>store.user)
@@ -52,15 +54,16 @@ const Profile = () => {
           handleChange={handleChange}
           />
 
-<InputRow 
+          <InputRow 
           type={"text"}
+          labelText = {"last Name"}
           name = {"lastName"}
           value = {lastName}
           placeholder = {'Enter lastName'}
           handleChange={handleChange}
           />
 
-<InputRow 
+          <InputRow 
           type={"email"}
           name = {"email"}
           value = {email}
@@ -68,13 +71,17 @@ const Profile = () => {
           handleChange={handleChange}
           />
 
-<InputRow 
+          <InputRow 
           type={"text"}
           name = {"location"}
           value = {location}
           placeholder = {'Enter location'}
           handleChange={handleChange}
           />
+
+          <Button disable={isLoading} type={"submit"} className={"btn btn-block"}>
+            {isLoading ? <FiLoader /> : `Save changes `}
+          </Button>
         </div>
       </form>
     </Wrapper>
