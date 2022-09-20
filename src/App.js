@@ -2,7 +2,7 @@ import React from 'react'
 import {Route, Routes} from "react-router-dom"
 import { ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
-import { Landing, Error, Register} from './pages'
+import { Landing, Error, Register, EncryptedRoute} from './pages'
 import {AddJobs, AllJobs, Profile, Stats, SharedLayout } from "./pages/Dashoard" 
 
  const App = () => {
@@ -10,7 +10,13 @@ import {AddJobs, AllJobs, Profile, Stats, SharedLayout } from "./pages/Dashoard"
     <>
     <Routes>
       {/* Created a sharedlayout for displaying my nested routes without navigating away */}
-      <Route path='/' exact element = {<SharedLayout />}>
+      <Route path='/' exact element = {
+        <EncryptedRoute>
+          <SharedLayout />
+        </EncryptedRoute>  
+      }>
+
+        {/* The outlet of SharedLayout i.e the sub pages in SharedLayout */}
         <Route index element = {<Profile/> }/>
        <Route element = {<Stats />} path="stats"/>
        <Route element = {<AllJobs />} path="all-jobs"/>
