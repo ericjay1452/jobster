@@ -41,6 +41,11 @@ export const updateUser = createAsyncThunk('user/updateUser', async (user, thunk
 		});
 		return response.data;
 	} catch (error) {
+    // this condition is used when the Bearer token is invalid or absent...
+    if(error.response.status === 401) {
+      thunkApi.dispatch( logOutUser())
+      return thunkApi.rejectWithValue("Unauthorized !, logging out...")
+    }
 		return thunkApi.rejectWithValue(error.response.data.msg);
 	}
 });
