@@ -6,7 +6,8 @@ import Logo from '../Logo/Logo'
 import { GrFormClose } from "react-icons/gr"
 import Button from '../Button/Button'
 import { toggleSideBar } from '../../features/User/UserSlice'
-
+import { links } from '../../utils/links'
+import { SidebarLinks } from './SidebarLinks'
 const SmallSideBar = () => {
 
   const { isSidebarOpen } = useSelector( (store) =>store.user)
@@ -28,10 +29,10 @@ const SmallSideBar = () => {
           <Logo />
          </header>
 
-         <ul className='navs-link'>
-           <li>
-            nav link
-           </li>
+         <ul className='nav-links'>
+           {links.map( (link) =>{
+            return <SidebarLinks key={link.id} {...link} toggle={toggle}/>
+           })}
          </ul>
         </div>
 
