@@ -37,8 +37,17 @@ const UserSlice = createSlice({
   initialState,
    
     reducers: {
+      // used in Navbar.js for toggling sidebar
      toggleSideBar : (state) =>{
       state.isSidebarOpen = !state.isSidebarOpen
+     },
+
+    //  Used in Navbar.js for once user click on this function
+    // its automatically log them out  
+     logOutUser : (state) =>{
+      state.User = null,
+      state.isSidebarOpen = false,
+      RemoveuserFromLocalStorage()
      }
     },
 
@@ -83,7 +92,7 @@ const UserSlice = createSlice({
   }
 })
 
-export const  { toggleSideBar } = UserSlice.actions
+export const  { toggleSideBar,logOutUser } = UserSlice.actions
 
 // always export your UserSlice.reducer to allow to have access in your store.js
 export default UserSlice.reducer

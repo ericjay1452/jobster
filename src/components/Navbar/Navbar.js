@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Wrapper from '../../assets/wrappers/Navbar'
 import { TbAlignLeft } from "react-icons/tb"
 import { FaUserCircle, FaCaretDown } from "react-icons/fa"
@@ -10,6 +10,7 @@ import Logo from '../Logo/Logo'
 const Navbar = () => {
   const {User} = useSelector( (store) =>store.user);
   const dispatch = useDispatch()
+  const [ showlogout, setShowlogout ] = useState(false)
 
   // for sidebarToggle
   const sideBarToggler = () =>{
@@ -19,7 +20,7 @@ const Navbar = () => {
   return (
     <Wrapper>
       <section className='nav-center'>
-       <Button type={"button "} className="toggle-btn" onClick={()=>console.log("Toggle-sidebar")}>
+       <Button type={"button "} className="toggle-btn" onClick={sideBarToggler}>
        <TbAlignLeft />
        </Button>
 
@@ -29,14 +30,14 @@ const Navbar = () => {
       </div>
 
       <div className='btn-container'>
-        <Button className={"btn"} type = {"btn"} onClick = {()=>console.log("User toggler")}>
+        <Button className={"btn"} type = {"btn"} onClick = {()=>setShowlogout(!showlogout)}>
           <FaUserCircle />
            {User?.name}
           <FaCaretDown />
         </Button>
 
          {/* For user toggling dropdown */}
-        <div className='dropdown show-dropdown'>
+        <div className= {showlogout ? 'dropdown show-dropdown': 'dropdown'}>
         <Button className={"dropdown-btn"} type = {"btn"} onClick = {()=>console.log("logout user")}>
          Logout
         </Button>
