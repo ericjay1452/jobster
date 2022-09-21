@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { customFetch } from '../../utils/axios';
+// import { customFetch } from '../../utils/axios';
 import {
-  // loginUserThunk,
-  // registerUserThunk,
-  // updateUserThunk,
+  loginUserThunk,
+  registerUserThunk,
+  updateUserThunk,
   clearStoreThunk,
 } from './userThunk';
 
@@ -19,42 +19,27 @@ const initialState = {
 // function for registering user
 export const RegisterUser = createAsyncThunk('user/register', async (user, thunkApi) => {
 	// console.log(` register : ${JSON.stringify(user)} `)
-	try {
-		const response = await customFetch.post('/auth/register', user);
-		return response.data;
-	} catch (error) {
-		return thunkApi.rejectWithValue(error.response.data.msg);
-	}
+	registerUserThunk('/auth/register', user, thunkApi)
+	// try {
+	// 	const response = await customFetch.post('/auth/register', user);
+	// 	return response.data;
+	// } catch (error) {
+	// 	return thunkApi.rejectWithValue(error.response.data.msg);
+	// }
 });
 
 // function for Logining user
 export const LoginUser = createAsyncThunk('user/loginUser', async (user, thunkApi) => {
-	try {
-		const response = await customFetch.post('/auth/login', user);
-		return response.data;
-	} catch (error) {
-		return thunkApi.rejectWithValue(error.response.data.msg);
-	}
+	
+	return loginUserThunk('/auth/login', user, thunkApi);
+	
 });
+
 
 // function for Updating user information
 export const updateUser = createAsyncThunk('user/updateUser', async (user, thunkApi) => {
-	try {
-		// Axios allow third params for accessing your headers
-		const response = await customFetch.patch('/auth/updateUser', user, {
-			headers: {
-				authorization: `Bearer ${thunkApi.getState().user.User.token}`
-			}
-		});
-		return response.data;
-	} catch (error) {
-    // this condition is used when the Bearer token is invalid or absent...
-    if(error.response.status === 401) {
-      thunkApi.dispatch( logOutUser())
-      return thunkApi.rejectWithValue("Unauthorized !, logging out...")
-    }
-		return thunkApi.rejectWithValue(error.response.data.msg);
-	}
+
+return updateUserThunk('/auth/updateUser', user, thunkApi);
 });
 
 export const clearStore = createAsyncThunk('user/clearStore', clearStoreThunk);
