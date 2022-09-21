@@ -4,7 +4,7 @@ import Wrapper from '../../assets/wrappers/JobsContainer';
 import { useSelector, useDispatch } from 'react-redux';
 import Loading from '../Loading/Loading';
 import { getAllJobs } from '../../features/allJobs/allJobsSlice';
-import PageBtnContainer from './PageBtnContainer';
+import PageBtnContainer from '../PageBtnContainer/PageBtnContainer';
 
 
 const JobsContainer = () => {
@@ -18,7 +18,7 @@ const JobsContainer = () => {
     searchStatus,
     searchType,
     sort,
-  } = useSelector((store) => store.allJobs);
+  } = useSelector( (store) =>store.alljobs)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const JobsContainer = () => {
   }, [page, search, searchStatus, searchType, sort, dispatch]);
 
   if (isLoading) {
-    return <Loading />;
+    return <Loading center/>;
   }
 
   if (jobs.length === 0) {

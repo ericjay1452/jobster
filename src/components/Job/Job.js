@@ -2,7 +2,7 @@ import { FaLocationArrow, FaBriefcase, FaCalendarAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import Wrapper from '../../assets/wrappers/Job';
 import { useDispatch } from 'react-redux';
-import JobInfo from './JobInfo';
+import JobInfo from '../JobInfo/JobInfo';
 import moment from 'moment';
 import { deleteJob, setEditJob } from '../../features/job/jobSlice';
 const Job = ({
