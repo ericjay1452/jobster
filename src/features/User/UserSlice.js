@@ -1,6 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { customFetch } from '../../utils/axios';
+import {
+  // loginUserThunk,
+  // registerUserThunk,
+  // updateUserThunk,
+  clearStoreThunk,
+} from './userThunk';
+
 import { getUserFromLocalStorage, AdduserToLocalStorage, RemoveuserFromLocalStorage } from '../../utils/localStorage';
 
 const initialState = {
@@ -50,6 +57,8 @@ export const updateUser = createAsyncThunk('user/updateUser', async (user, thunk
 	}
 });
 
+export const clearStore = createAsyncThunk('user/clearStore', clearStoreThunk);
+
 // my state handler
 const UserSlice = createSlice({
 	name: 'user',
@@ -63,11 +72,14 @@ const UserSlice = createSlice({
 
 		//  Used in Navbar.js for once user click on this function
 		// its automatically log them out
-		logOutUser: (state) => {
-			state.User = null;
-			state.isSidebarOpen = false;
-			RemoveuserFromLocalStorage();
-		}
+		logOutUser:  (state, { payload }) => {
+      state.User = null;
+      state.isSidebarOpen = false;
+      RemoveuserFromLocalStorage();
+      if (payload) {
+        toast.success(payload);
+      }
+    },
 	},
 
 	// extraReducers is used for fetching of api
@@ -124,7 +136,11 @@ const UserSlice = createSlice({
 		[updateUser.rejected]: (state, { payload }) => {
 			state.isLoading = false;
 			toast.error(payload);
-		}
+		},
+    
+    [clearStore.rejected]: () => {
+      toast.error('There was an error..');
+    },
 	}
   
 });
