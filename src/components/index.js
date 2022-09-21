@@ -8,4 +8,7 @@ export {default as StatsContainer} from "../components/StatsContainer/StatsConta
 export {default as ChartsContainer} from "../components/ChartsContainer/ChartsContainer"
 export {default as Loading} from "../components/Loading/Loading"
 export {default as FormRowSelect} from "../components/FormRowSelect/FormRowSelect"
+export {default as SearchContainer} from "../components/SearchContainer/SearchContainer"
+export {default as JobsContainer} from "../components/JobsContainer/JobsContainer"
+export {default as Job} from "../components/Job/Job"
 export {default as FormRow} from "../components/FormRow/FormRow"
